@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32014.148
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MultiTenant.Service", "MultiTenant.Service\MultiTenant.Service.csproj", "{6E75F118-FD69-4C29-8F6B-F9D62C0B4784}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultiTenant.API", "MultiTenant.API\MultiTenant.API.csproj", "{1D25934F-90BB-4AEE-A5F7-5028543377B4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6E75F118-FD69-4C29-8F6B-F9D62C0B4784}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6E75F118-FD69-4C29-8F6B-F9D62C0B4784}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6E75F118-FD69-4C29-8F6B-F9D62C0B4784}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6E75F118-FD69-4C29-8F6B-F9D62C0B4784}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1D25934F-90BB-4AEE-A5F7-5028543377B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1D25934F-90BB-4AEE-A5F7-5028543377B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1D25934F-90BB-4AEE-A5F7-5028543377B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1D25934F-90BB-4AEE-A5F7-5028543377B4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8F8EB90C-F99A-4275-9C3C-A855B5D1CAE6}
+	EndGlobalSection
+EndGlobal
