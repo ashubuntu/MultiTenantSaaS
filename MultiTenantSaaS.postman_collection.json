@@ -1,0 +1,77 @@
+{
+	"info": {
+		"_postman_id": "2bca8b89-3b05-4b65-ab48-f8f95f7de53d",
+		"name": "MultiTenantSaaS",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "User/Register",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"UserEmail\": \"ash.razu@gmail.com\",\r\n    \"ServicePlan\": \"Free\"\r\n}"
+				},
+				"url": {
+					"raw": "https://localhost:44303/api/User/Register",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44303",
+					"path": [
+						"api",
+						"User",
+						"Register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User/ChangeServicePlan",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"UserEmail\": \"ash.razu@gmail.com\",\r\n    \"ServicePlan\": \"Free\",\r\n    \"TargetServicePlan\": \"Standard\"\r\n}"
+				},
+				"url": {
+					"raw": "https://localhost:44303/api/User/ChangeServicePlan",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44303",
+					"path": [
+						"api",
+						"User",
+						"ChangeServicePlan"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "BaseURL",
+			"value": "https://localhost:44303"
+		}
+	]
+}
