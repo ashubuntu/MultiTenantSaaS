@@ -24,12 +24,5 @@
 
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="ApplySqlToShards.ps1" />
-    <None Include="LICENSE" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="EnableRLS.sql" />
-    <Content Include="RemoveRLS.sql" />
   </ItemGroup>
 </Project>

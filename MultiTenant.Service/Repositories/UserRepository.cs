@@ -41,7 +41,7 @@ namespace MultiTenant.Service.Repositories
 
         public bool UserExists(User user, dynamic shardDetails)
         {
-            bool userExits = false;
+            bool userExists = false;
 
             SqlDatabaseUtils.SqlRetryPolicy.ExecuteAction(() =>
             {
@@ -53,12 +53,12 @@ namespace MultiTenant.Service.Repositories
 
                     if (query.Count() > 0)
                     {
-                        userExits = true;
+                        userExists = true;
                     }
                 }
             });
 
-            return userExits;
+            return userExists;
         }
     }
 }

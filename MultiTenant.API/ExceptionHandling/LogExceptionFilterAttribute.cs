@@ -16,8 +16,8 @@ namespace MultiTenant.API.ExceptionHandling
                         new
                         {
                             code = HttpStatusCode.InternalServerError,
-                            status = HttpStatusCode.InternalServerError.ToString(),
-                            message = "unable to process the request"
+                            status = Utilities.SplitCamelCase(HttpStatusCode.InternalServerError.ToString()).ToLower(),
+                            content = "unable to process the request"
                         },
                         Formatting.Indented
                     )

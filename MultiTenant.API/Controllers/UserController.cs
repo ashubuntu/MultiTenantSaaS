@@ -26,7 +26,7 @@ namespace MultiTenant.API.Controllers
                 return GetJsonResult("user already exists", code: HttpStatusCode.NotModified);
             }
 
-            bool created = userRepository.CreateUser(new User() { TenantId = tenantId, UserEmail = registerModel.UserEmail }, shardDetails);
+            bool created = userRepository.CreateUser(user, shardDetails);
             if (created)
             {
                 return GetJsonResult("user registered", code: HttpStatusCode.Created);
