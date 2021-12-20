@@ -1,4 +1,6 @@
 ﻿using Microsoft.Azure.SqlDatabase.ElasticScale.Query;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace MultiTenant.Service.Repositories
 {
@@ -39,7 +41,24 @@ namespace MultiTenant.Service.Repositories
             return deleted;
         }
 
-        public bool UserExists(User user, dynamic shardDetails)
+        public IEnumerable<User> GetAll(int tenantId, dynamic shardDetails)
+        {
+            IEnumerable<User> users = null;
+            SqlDatabaseUtils.SqlRetryPolicy.ExecuteAction(() =>
+            {
+                using (var db = new ElasticScaleContext<int>(shardDetails.Item2.ShardMap, tenantId, shardDetails.Item1.ConnectionString))
+                {
+                    var query = from u in db.Users
+                                where u.TenantId == tenantId
+                                select u;
+                    users = query.ToList();
+                }
+            });
+
+            return users;
+        }
+
+        public bool UserExists(User user, dynamic shardDetails, bool checkTenant = false)
         {
             bool userExists = false;
 
@@ -47,12 +66,18 @@ namespace MultiTenant.Service.Repositories
             {
                 using (MultiShardCommand cmd = conn.CreateCommand())
                 {
-                    cmd.CommandText = "SELECT * FROM Users WHERE UserEmail = @UserEmail";
+                    var appendTenantCond = checkTenant ? " AND TenantId = @TenantId" : string.Empty;
+                    cmd.CommandText = $"SELECT * FROM Users WHERE UserEmail = @UserEmail {appendTenantCond}";
                     cmd.Parameters.AddWithValue("@UserEmail", user.UserEmail);
+                    if (checkTenant)
+                    {
+                        cmd.Parameters.AddWithValue("@TenantId", user.TenantId);
+                    }
 
                     cmd.ExecutionPolicy = MultiShardExecutionPolicy.CompleteResults;
 
-                    userExists = ShardHelper.ExecuteCommand<User>(cmd) != null;
+                    var result = ShardHelper.ExecuteCommand<User>(cmd);
+                    userExists = result != null;
                 }
             }
 

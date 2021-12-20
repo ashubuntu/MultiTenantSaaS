@@ -37,9 +37,6 @@ namespace MultiTenant.Service
             dynamic jsonString;
             try
             {
-                StringBuilder output = new StringBuilder();
-                output.AppendLine();
-
                 using (MultiShardDataReader reader = cmd.ExecuteReader(CommandBehavior.Default))
                 {
                     jsonString = JsonConvert.SerializeObject(((NameValueCollection)GetValues(reader).FirstOrDefault()).ToDictionary());

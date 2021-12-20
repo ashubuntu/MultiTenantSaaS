@@ -21,12 +21,10 @@
 					"raw": "{\r\n    \"UserEmail\": \"ash.razu@gmail.com\",\r\n    \"ServicePlan\": \"Free\"\r\n}"
 				},
 				"url": {
-					"raw": "https://localhost:44303/api/User/Register",
-					"protocol": "https",
+					"raw": "{{BaseURL}}/api/User/Register",
 					"host": [
-						"localhost"
+						"{{BaseURL}}"
 					],
-					"port": "44303",
 					"path": [
 						"api",
 						"User",
@@ -49,19 +47,48 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"UserEmail\": \"ash.razu@gmail.com\",\r\n    \"ServicePlan\": \"Free\",\r\n    \"TargetServicePlan\": \"Standard\"\r\n}"
+					"raw": "{\r\n    \"UserEmail\": \"ash.razu@gmail.com\",\r\n    \"ServicePlan\": \"Standard\",\r\n    \"TargetServicePlan\": \"Free\"\r\n}"
 				},
 				"url": {
-					"raw": "https://localhost:44303/api/User/ChangeServicePlan",
-					"protocol": "https",
+					"raw": "{{BaseURL}}/api/User/ChangeServicePlan",
 					"host": [
-						"localhost"
+						"{{BaseURL}}"
 					],
-					"port": "44303",
 					"path": [
 						"api",
 						"User",
 						"ChangeServicePlan"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User/GetAll",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{BaseURL}}/api/User/GetAll?ServicePlan=Free",
+					"host": [
+						"{{BaseURL}}"
+					],
+					"path": [
+						"api",
+						"User",
+						"GetAll"
+					],
+					"query": [
+						{
+							"key": "ServicePlan",
+							"value": "Free"
+						}
 					]
 				}
 			},
