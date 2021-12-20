@@ -1,4 +1,4 @@
-﻿using System.Linq;
+﻿using Microsoft.Azure.SqlDatabase.ElasticScale.Query;
 
 namespace MultiTenant.Service.Repositories
 {
@@ -43,20 +43,18 @@ namespace MultiTenant.Service.Repositories
         {
             bool userExists = false;
 
-            SqlDatabaseUtils.SqlRetryPolicy.ExecuteAction(() =>
+            using (MultiShardConnection conn = new MultiShardConnection(shardDetails.Item2.ShardMap.GetShards(), shardDetails.Item1.ConnectionString))
             {
-                using (var db = new ElasticScaleContext<int>(shardDetails.Item2.ShardMap, user.TenantId, shardDetails.Item1.ConnectionString))
+                using (MultiShardCommand cmd = conn.CreateCommand())
                 {
-                    var query = from u in db.Users
-                                where u.TenantId == user.TenantId && u.UserEmail == user.UserEmail
-                                select u;
+                    cmd.CommandText = "SELECT * FROM Users WHERE UserEmail = @UserEmail";
+                    cmd.Parameters.AddWithValue("@UserEmail", user.UserEmail);
 
-                    if (query.Count() > 0)
-                    {
-                        userExists = true;
-                    }
+                    cmd.ExecutionPolicy = MultiShardExecutionPolicy.CompleteResults;
+
+                    userExists = ShardHelper.ExecuteCommand<User>(cmd) != null;
                 }
-            });
+            }
 
             return userExists;
         }

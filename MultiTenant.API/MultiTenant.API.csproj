@@ -119,9 +119,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\MultiTenant.Service\MultiTenant.Service.csproj">
       <Project>{6e75f118-fd69-4c29-8f6b-f9d62c0b4784}</Project>
