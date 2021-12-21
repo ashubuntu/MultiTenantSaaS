@@ -66,11 +66,12 @@ namespace MultiTenant.Service.Repositories
             {
                 using (MultiShardCommand cmd = conn.CreateCommand())
                 {
-                    var appendTenantCond = checkTenant ? " AND TenantId = @TenantId" : string.Empty;
-                    cmd.CommandText = $"SELECT * FROM Users WHERE UserEmail = @UserEmail {appendTenantCond}";
+                    cmd.CommandText = "SELECT * FROM Users WHERE UserEmail = @UserEmail";
                     cmd.Parameters.AddWithValue("@UserEmail", user.UserEmail);
+
                     if (checkTenant)
                     {
+                        cmd.CommandText += " AND TenantId = @TenantId";
                         cmd.Parameters.AddWithValue("@TenantId", user.TenantId);
                     }
 

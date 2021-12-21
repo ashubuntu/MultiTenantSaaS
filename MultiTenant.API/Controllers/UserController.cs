@@ -67,7 +67,7 @@ namespace MultiTenant.API.Controllers
                 }
             }
 
-            return GetJsonResult("cannot change plan", code: HttpStatusCode.BadRequest);
+            return GetJsonResult($"cannot change plan - user does not exist in service plan: {changeServicePlanModel.ServicePlan}", code: HttpStatusCode.BadRequest);
         }
 
         public IHttpActionResult GetAll(ServicePlan ServicePlan)
